@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Your Website</title>
+</head>
+<body>
+
+    <!-- Your website content goes here -->
+    <header>
+        <h1>Welcome to Our Test Website</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Homepage Content</h2>
+        <p>This is the homepage of our test website. Feel free to explore!</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Test Website. All rights reserved.</p>
+    </footer>
+    <h1>{{ message }}</h1>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Contact Form</h2>
+            <form action="submit_form.php" method="post" id="myForm" onsubmit="submitForm(event)">
+                <!-- Your custom form goes here -->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="e.g., 1234567890">
+                <br>    
+                <label for="nps-rating">On a scale of 0 to 10, how likely are you to recommend our website to a friend or colleague?</label>
+                <div>
+                    <input type="radio" id="nps-0" name="nps-rating" value="0" required>
+                    <label for="nps-0">0</label>
+                    <input type="radio" id="nps-1" name="nps-rating" value="1" required>
+                    <label for="nps-1">1</label>
+                    <input type="radio" id="nps-2" name="nps-rating" value="2" required>
+                    <label for="nps-2">2</label>
+                    <input type="radio" id="nps-3" name="nps-rating" value="3" required>
+                    <label for="nps-3">3</label>
+                    <input type="radio" id="nps-4" name="nps-rating" value="4" required>
+                    <label for="nps-4">4</label>
+                    <input type="radio" id="nps-5" name="nps-rating" value="5" required>
+                    <label for="nps-5">5</label>
+                    <input type="radio" id="nps-6" name="nps-rating" value="6" required>
+                    <label for="nps-6">6</label>
+                    <input type="radio" id="nps-7" name="nps-rating" value="7" required>
+                    <label for="nps-7">7</label>
+                    <input type="radio" id="nps-8" name="nps-rating" value="8" required>
+                    <label for="nps-8">8</label>
+                    <input type="radio" id="nps-9" name="nps-rating" value="9" required>
+                    <label for="nps-9">9</label>
+                    <input type="radio" id="nps-10" name="nps-rating" value="10" required>
+                    <label for="nps-10">10</label>
+                </div>
+                <br>
+                <label>How often do you visit websites of this category?</label>
+                <div>
+                    <input type="radio" id="rarely" name="visit-frequency" value="rarely" required>
+                    <label for="rarely">Rarely</label>
+
+                    <input type="radio" id="sometimes" name="visit-frequency" value="sometimes" required>
+                    <label for="sometimes">Sometimes</label>
+
+                    <input type="radio" id="regularly" name="visit-frequency" value="regularly" required>
+                    <label for="regularly">Regularly</label>
+                    <br>
+                    <label for="comments">Additional Comments:</label>
+                    <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+                    <br>
+                    <input type="button" value="Submit" onclick="submitForm()">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+            // Get the form data
+            var formData = new FormData(document.getElementById("myForm"));
+    
+            // Make an AJAX request
+            fetch("submit_form.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Update the content of the modal or display a notification
+                document.getElementById("myModal").innerHTML = data;
+    
+                // Close the modal
+                closeModal();
+    
+                // Reset the form
+                document.getElementById("myForm").reset();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+    </script>
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>
